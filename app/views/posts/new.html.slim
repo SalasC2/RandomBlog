@@ -1,0 +1,7 @@
+h1.text-center 
+  | Create a new Post
+h3
+  - if flash[:alert]
+    = flash[:alert]
+    br
+  = render "/posts/form"

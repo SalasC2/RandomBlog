@@ -1,0 +1,11 @@
+h1.text-center
+  | Editing 
+  = @post.title
+  br
+  br
+h3
+  - if flash[:alert]
+    = flash[:alert]
+    br
+h1
+  = render "/posts/form"

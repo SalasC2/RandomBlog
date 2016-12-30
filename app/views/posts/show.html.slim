@@ -1,0 +1,30 @@
+h4
+  = link_to "Home", "/"
+h3.text-center
+  - if flash[:notice]
+    = flash[:notice]
+  - if flash[:alert]
+    = flash[:alert]
+    br
+h2.text-center
+  | Title: 
+  = @post.title
+h5.text-center
+  | Created at: 
+  = @post.created_at.strftime('%b %d, %Y')
+h3.text-center
+  = @post.body
+-if current_user == @post.user
+  br 
+  h3.text-center
+    = link_to "Edit Post", "/posts/#{@post.id}/edit"
+  br
+  br
+  h4.text-center
+    = button_to "delete", {:controller => :posts,
+        :action => 'destroy', :id => @post.id }, :method => :delete
+- else
+  h3.text-center
+    | Author: 
+    i
+      = @post.user.name

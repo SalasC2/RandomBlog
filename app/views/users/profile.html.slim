@@ -1,0 +1,29 @@
+= link_to "Home", "/"
+br
+= link_to "Posts", "/posts"
+br
+
+h1.user-name
+  | Welcome #{@user.name} 
+- if @posts.empty?
+  h3
+    | You don't have any postings yet :(
+    br
+    | Create one now!
+    br
+  h4
+    = link_to "Create New Post", "/posts/new"
+      
+- else
+  h3 
+    | Here are your Posts: 
+  h3.user-posts
+    - @posts.each do |post|
+      p
+      | Title: 
+      = post.title 
+      br
+      = post.body
+      br
+      br11
+    = link_to "Create New Post", "/posts/new"
