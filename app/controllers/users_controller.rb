@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def profile
     @user = User.find(current_user.id)
-    @posts = @user.posts
+    @posts = @user.posts.order("created_at DESC")
   end
 
   def new
