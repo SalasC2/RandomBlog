@@ -2,11 +2,6 @@
 nav.navbar.navbar-default.navbar-custom.navbar-fixed-top
   .container-fluid[style="background-color: black"]
     .navbar-header.page-scroll
-      button.navbar-toggle[type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"]
-        span.sr-only
-            | Toggle navigation
-        |  Menu 
-        i.fa.fa-bars
       .link-to-text-color
         - if current_user
           = link_to "Logout", :controller => 'sessions', :action => 'destroy'
@@ -24,28 +19,28 @@ nav.navbar.navbar-default.navbar-custom.navbar-fixed-top
         li
           = link_to "Posts", "/posts"
 
-  header.intro-header[style="background-color: black"]
-    .container
-      .row
-        .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
-            .site-heading
-              h1
-                | The most amazing Blog about stuff
-              hr.small
-              span.subheading
-                | A blog about stuff
-        
+header.intro-header[style="background-color: black"]
   .container
     .row
       .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
-        .post-preview
-          - @posts.each do |post|
-              .text-center
-              a[href="/posts/#{post.id}"]
-                h2.post-title
-                    = post.title
-                    br
-                    = post.created_at.strftime('%b %d, %Y')
-                    br
-                    | by: 
-                    = post.user.name
+          .site-heading
+            h1
+              | The most amazing Blog about stuff
+            hr.small
+            span.subheading
+              | A blog about stuff
+        
+.container
+  .row
+    .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+      .post-preview
+        - @posts.each do |post|
+            .text-center
+            a[href="/posts/#{post.id}"]
+              h2.post-title
+                  = post.title
+                  br
+                  = post.created_at.strftime('%b %d, %Y')
+                  br
+                  | by: 
+                  = post.user.name
