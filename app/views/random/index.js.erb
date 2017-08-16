@@ -43,10 +43,10 @@ const DataHandler = function() {
         if (json[i]['Photo__c']) {
          pics.push(json[i])
         }
-        else {
-          json[i]['Photo__c'] = document.getElementById("noimg").src;
-          pics.push(json[i])
-        }
+        // else {
+        //   json[i]['Photo__c'] = document.getElementById("noimg").src;
+        //   pics.push(json[i])
+        // }
       }
       dataLength = json.length;
       _populateTemplate(pics);
