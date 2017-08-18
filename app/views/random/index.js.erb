@@ -94,7 +94,7 @@ const DataHandler = function() {
     var html;
     var photo = data[clickCount].Photo__c.substring(data[clickCount].Photo__c.lastIndexOf("=")+1);
     fetch("https://gaiascholarconnect.secure.force.com/tfiapi/services/apexrest/IndividualPhoto/"+photo)
-    .then(response => { console.log(response); slideList.innerHTML += response; slideList.innerHTML += photo; console.log(photo)})
+    .then(response => { console.log(response["url"]); slideList.innerHTML += response["url"]; })
 
 
     // if (data[clickCount]["Photo__c"] !== 'unnamed.png') {
