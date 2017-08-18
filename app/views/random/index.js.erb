@@ -94,7 +94,11 @@ const DataHandler = function() {
     var html;
     var photo = data[clickCount].Photo__c.substring(data[clickCount].Photo__c.lastIndexOf("=")+1);
     fetch("https://gaiascholarconnect.secure.force.com/tfiapi/services/apexrest/IndividualPhoto/"+photo)
-    .then(response => { list.push(response); console.log("complete" + response); console.log("accessing"response[clickCount]); console.log("url" +response[clickCount]["url"])})
+    .then(response => { list.push(response);
+      console.log("complete" + response);
+      console.log("accessing" + response[clickCount]); 
+      console.log("url" + response[clickCount]["url"]);
+  })
 
 
     // if (data[clickCount]["Photo__c"] !== 'unnamed.png') {
