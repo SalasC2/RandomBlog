@@ -96,7 +96,7 @@ const DataHandler = function() {
     fetch("https://gaiascholarconnect.secure.force.com/tfiapi/services/apexrest/IndividualPhoto/"+photo)
     .then(response => { list.push(response);
       console.log("complete" + response);
-      console.log("accessing" + response[clickCount]); 
+      console.log("accessing" + response[clickCount]);
       console.log("url" + response[clickCount]["url"]);
   })
 
@@ -108,8 +108,8 @@ const DataHandler = function() {
 
     var html = template(data[clickCount]);
     var display = template(list[clickCount])
-    console.log("after complete"list)
-    console.log("After acecss"list[clickCount])
+    console.log("after complete" + list)
+    console.log("After acecss" + list[clickCount])
 
     slideList.innerHTML = '';
     slideList.innerHTML += display;
