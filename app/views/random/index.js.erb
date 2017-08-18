@@ -90,15 +90,27 @@ const DataHandler = function() {
   }
 
   const _populateTemplate = function(data) {
-    var html = template(data[clickCount]);
-    slideList.innerHTML = '';
-    slideList.innerHTML += html;
-    setTimeout(() => {
-      slider.classList.remove('is-loading')
-      const currentCard = document.querySelectorAll('.slider__card')[0];
-      currentCard.classList.add('is-active');
-    }, 300);
-  }
+      var html;
+      var photo = data[clickCount].Photo__c.substring(data[clickCount].Photo__c.lastIndexOf("=")+1);
+      fetch("https://gaiascholarconnect.secure.force.com/tfiapi/services/apexrest/IndividualPhoto/"+photo)
+      .then(response => { html = template(response)})
+
+
+
+      // if (data[clickCount]["Photo__c"] !== 'unnamed.png') {
+      //   html = template("https://gaiascholarconnect.secure.force.com/tfiapi/services/apexrest/IndividualPhoto/"+photo)
+      //
+      // }
+
+      // var html = template(data[clickCount]);
+      slideList.innerHTML = '';
+      slideList.innerHTML += html;
+      setTimeout(() => {
+        slider.classList.remove('is-loading')
+        const currentCard = document.querySelectorAll('.slider__card')[0];
+        currentCard.classList.add('is-active');
+      }, 300);
+    }
 
   const _isLoading = function() {
     slider.classList.add('is-loading')
