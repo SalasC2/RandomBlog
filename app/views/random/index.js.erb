@@ -40,13 +40,20 @@ const DataHandler = function() {
     .then(response => { return response.json() })
     .then(json => {
       for (var i = 0; i < json.length; i++){
-        if (json[i]['Photo__c']) {
-         pics.push(json[i])
+        if (["Photo__c" ] in json == false) {
+          json[i]['Photo__c'] = document.getElementById("noimg").src;
+          pics.push(json[i])
         }
-        // else {
-        //   json[i]['Photo__c'] = document.getElementById("noimg").src;
-        //   pics.push(json[i])
-        // }
+        else {
+          if (data[clickCount].Photo__c !== "http://www.thegaia.org/wp-content/uploads/2017/08/unnamed.png") {
+            var photo = data[clickCount].Photo__c.substring(data[clickCount].Photo__c.lastIndexOf("=")+1);
+            fetch("https://gaiascholarconnect.secure.force.com/tfiapi/services/apexrest/IndividualPhoto/"+photo)
+            .then(response => { return response.json() })
+            .then(data => {
+              pics.push(data)
+            })
+          }
+        }
       }
       dataLength = json.length;
       _populateTemplate(pics);
@@ -90,26 +97,12 @@ const DataHandler = function() {
   }
 
   const _populateTemplate = function(data) {
-    var list = []
-    var html;
-    var photo = data[clickCount].Photo__c.substring(data[clickCount].Photo__c.lastIndexOf("=")+1);
-    fetch("https://gaiascholarconnect.secure.force.com/tfiapi/services/apexrest/IndividualPhoto/00P36000005AT3N")
-    .then(response => { response.json() })
-    .then(data => { console.log(data) })
 
-    // if (data[clickCount]["Photo__c"] !== 'unnamed.png') {
-    //   html = template("https://gaiascholarconnect.secure.force.com/tfiapi/services/apexrest/IndividualPhoto/"+photo)
-    //
-    // }
-
-    // var html = template(data[clickCount]);
-    // var display = template(list[clickCount])
-    // console.log("after complete" + list)
-    // console.log("After acecss" + list[clickCount])
-
-
-    slideList.innerHTML = '';
+    var html = template(data[clickCount]);
+    console.log(html)
+    slideList.innerHTML += '';
     slideList.innerHTML += html;
+
     setTimeout(() => {
       slider.classList.remove('is-loading')
       const currentCard = document.querySelectorAll('.slider__card')[0];
